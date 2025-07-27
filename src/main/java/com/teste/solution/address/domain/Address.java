@@ -1,5 +1,6 @@
 package com.teste.solution.address.domain;
 
+import com.teste.solution.address.domain.dtos.CreateAddressDto;
 import com.teste.solution.user.domain.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -60,4 +61,20 @@ public class Address {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "solti_address_user_id", nullable = false)
     private User user;
+
+    public Address(CreateAddressDto createAddressDto, User user) {
+        this.zipCode = createAddressDto.zipCode();
+        this.street = createAddressDto.street();
+        this.complement = createAddressDto.complement();
+        this.unit = createAddressDto.unit();
+        this.district = createAddressDto.district();
+        this.city = createAddressDto.city();
+        this.stateAbbr = createAddressDto.stateAbbr();
+        this.region = createAddressDto.region();
+        this.ibgeCode = createAddressDto.ibgeCode();
+        this.giaCode = createAddressDto.giaCode();
+        this.areaCode = createAddressDto.areaCode();
+        this.siafiCode = createAddressDto.siafiCode();
+        this.user = user;
+    }
 }

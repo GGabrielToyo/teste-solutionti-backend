@@ -1,5 +1,6 @@
 package com.teste.solution.user.domain;
 
+import com.teste.solution.user.domain.dtos.CreateUserDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,4 +30,9 @@ public class User {
 
     @Column(name = "solti_user_created_at", nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    public User(CreateUserDto createUserDto) {
+        this.name = createUserDto.name();
+        this.cpf = createUserDto.cpf();
+    }
 }
