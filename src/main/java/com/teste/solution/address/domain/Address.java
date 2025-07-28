@@ -1,6 +1,7 @@
 package com.teste.solution.address.domain;
 
 import com.teste.solution.address.domain.dtos.CreateAddressDto;
+import com.teste.solution.address.domain.dtos.UpdateAddressDto;
 import com.teste.solution.user.domain.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -76,5 +77,20 @@ public class Address {
         this.areaCode = createAddressDto.areaCode();
         this.siafiCode = createAddressDto.siafiCode();
         this.user = user;
+    }
+
+    public void update(UpdateAddressDto updateAddressDto) {
+        this.zipCode = updateAddressDto.zipCode() != null ? updateAddressDto.zipCode() : this.zipCode;
+        this.street = updateAddressDto.street() != null ? updateAddressDto.street() : this.street;
+        this.complement = updateAddressDto.complement() != null ? updateAddressDto.complement() : this.complement;
+        this.unit = updateAddressDto.unit() != null ? updateAddressDto.unit() : this.unit;
+        this.district = updateAddressDto.district() != null ? updateAddressDto.district() : this.district;
+        this.city = updateAddressDto.city() != null ? updateAddressDto.city() : this.city;
+        this.stateAbbr = updateAddressDto.stateAbbr() != null ? updateAddressDto.stateAbbr() : this.stateAbbr;
+        this.region = updateAddressDto.region() != null ? updateAddressDto.region() : this.region;
+        this.ibgeCode = updateAddressDto.ibgeCode() != null ? updateAddressDto.ibgeCode() : this.ibgeCode;
+        this.giaCode = updateAddressDto.giaCode() != null ? updateAddressDto.giaCode() : this.giaCode;
+        this.areaCode = updateAddressDto.areaCode() != null ? updateAddressDto.areaCode() : this.areaCode;
+        this.siafiCode = updateAddressDto.siafiCode() != null ? updateAddressDto.siafiCode() : this.siafiCode;
     }
 }

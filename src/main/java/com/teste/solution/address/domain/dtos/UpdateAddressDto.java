@@ -1,11 +1,12 @@
 package com.teste.solution.address.domain.dtos;
 
-import com.teste.solution.user.domain.User;
-import com.teste.solution.user.domain.dtos.CreateUserDto;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.UUID;
 
-public record CreateAddressDto(
+public record UpdateAddressDto(
+        @NotNull(message = "ID is required")
+        UUID id,
         String zipCode,
         String street,
         String complement,
@@ -17,7 +18,6 @@ public record CreateAddressDto(
         String ibgeCode,
         String giaCode,
         String areaCode,
-        String siafiCode,
-        UUID userId
+        String siafiCode
 ) {
 }
