@@ -6,6 +6,10 @@ public record CreateUserDto(
         @NotBlank(message = "Name is required")
         String name,
         @NotBlank(message = "CPF is required")
-        String cpf
+        String cpf,
+        @NotBlank(message = "Password is required")
+        String password,
+        @NotBlank(message = "Password confirmation is required")
+        String passwordConfirmation
 ) {
 }

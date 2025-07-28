@@ -12,6 +12,7 @@ public class ExistingCpfValidator implements UserCreationValidatorInterface{
     @Autowired
     private UserRepository userRepository;
 
+    @Override
     public void validate(CreateUserDto createUserDto) {
         if (userRepository.findByCpf(createUserDto.cpf()).isPresent()) {
             throw new ValidationException("User with CPF " + createUserDto.cpf() + " already exists.");

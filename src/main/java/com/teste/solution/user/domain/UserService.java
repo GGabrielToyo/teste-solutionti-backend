@@ -1,7 +1,7 @@
 package com.teste.solution.user.domain;
 
-import com.teste.solution.infra.exception.ValidationException;
 import com.teste.solution.user.domain.dtos.CreateUserDto;
+import com.teste.solution.user.domain.dtos.UpdateUserDto;
 import com.teste.solution.user.domain.dtos.UserDto;
 import com.teste.solution.user.domain.validators.userCreationValidator.UserCreationValidatorInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -20,17 +21,28 @@ public class UserService {
     private List<UserCreationValidatorInterface> validators;
 
     @Transactional
-    public User createOrSearch(CreateUserDto createUserDto) {
-        User user = getUserByCpf(createUserDto.cpf());
+    public User create(CreateUserDto createUserDto) {
+        validators.forEach(v -> v.validate(createUserDto));
 
-        if(user != null){
-            return user;
-        }
+        User user = new User(createUserDto);
 
-        user = new User(createUserDto);
         userRepository.save(user);
 
         return user;
+    }
+
+    @Transactional
+    public UserDto update(UpdateUserDto updateUserDto) {
+        User user = getUserEntityById(updateUserDto.id());
+
+        user.update(updateUserDto);
+
+        return new UserDto(user);
+    }
+
+    public User getUserEntityById(UUID id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     public User getUserByCpf(String cpf){
