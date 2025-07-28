@@ -4,7 +4,9 @@ import com.teste.solution.infra.exception.ValidationException;
 import com.teste.solution.user.domain.UserRepository;
 import com.teste.solution.user.domain.dtos.CreateUserDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ExistingCpfValidator implements UserCreationValidatorInterface{
 
     @Autowired
