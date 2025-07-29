@@ -4,6 +4,7 @@ import com.teste.solution.user.domain.dtos.CreateUserDto;
 import com.teste.solution.user.domain.dtos.UpdateUserDto;
 import com.teste.solution.user.domain.dtos.UserDto;
 import com.teste.solution.user.domain.validators.userCreationValidator.UserCreationValidatorInterface;
+import com.teste.solution.util.enums.RoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,10 +22,10 @@ public class UserService {
     private List<UserCreationValidatorInterface> validators;
 
     @Transactional
-    public User create(CreateUserDto createUserDto) {
+    public User create(CreateUserDto createUserDto, RoleEnum role) {
         validators.forEach(v -> v.validate(createUserDto));
 
-        User user = new User(createUserDto);
+        User user = new User(createUserDto, role);
 
         userRepository.save(user);
 
