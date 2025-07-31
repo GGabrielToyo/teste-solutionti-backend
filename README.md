@@ -3,13 +3,16 @@
 
 Api desenvolvida para etapa de teste do processo seletivo da empresa Solution TI.
 
-
+O backend esta rodando no servidor gratuito do Render e a documentação pode ser acessada aqui -> [https://teste-solutionti-backend.onrender.com/swagger-ui/index.html](https://teste-solutionti-backend.onrender.com/swagger-ui/index.html)
 
 
 ## Stack utilizada
 
-**Back-end:** JAVA 21, Spring Boot 3.5.4, Maven, PostgreSQL, Docker
+**Back-end:** JAVA 17, Spring Boot 3.5.4, Maven, PostgreSQL, Docker
 
+## Modelagem Simples desenvolvida
+
+<img width="800" height="1143" alt="Modelagem da Aplicação do Teste Prático - Solution TI" src="https://github.com/user-attachments/assets/4284d64b-e1f4-49bc-914c-f6e98364d838" />
 
 ## Instalação
 
