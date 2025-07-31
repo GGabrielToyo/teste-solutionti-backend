@@ -21,7 +21,7 @@ public class SwaggerApiConfigurations {
                 .components(new Components().addSecuritySchemes("bearer-key",
                         new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")))
                 .info(new Info()
-                        .title("Back-end Intranet Boatlux")
+                        .title("Back-end Teste - Solution TI")
                         .description("API para teste do processo seletivo da empresa Solution TI.")
                         .termsOfService("")
                         .contact(
