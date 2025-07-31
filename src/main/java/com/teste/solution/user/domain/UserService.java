@@ -46,6 +46,16 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
+    public UserDto getUserByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+
+        if (user != null) {
+            return new UserDto(user);
+        } else {
+            return null;
+        }
+    }
+
     public User getUserByCpf(String cpf){
         if(userRepository.findByCpf(cpf).isPresent()) {
             return userRepository.findByCpf(cpf).get();

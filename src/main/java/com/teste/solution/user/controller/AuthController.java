@@ -5,6 +5,7 @@ import com.teste.solution.user.domain.User;
 import com.teste.solution.user.domain.UserService;
 import com.teste.solution.user.domain.dtos.AuthDto;
 import com.teste.solution.user.domain.dtos.CreateUserDto;
+import com.teste.solution.user.domain.dtos.TokenDto;
 import com.teste.solution.user.domain.dtos.UserDto;
 import com.teste.solution.util.enums.RoleEnum;
 import jakarta.validation.Valid;
@@ -48,11 +49,12 @@ public class AuthController {
     }
 
     @PostMapping("signin")
-    public ResponseEntity<String> signIn(@RequestBody @Valid AuthDto authDto) {
+    public ResponseEntity<TokenDto> signIn(@RequestBody @Valid AuthDto authDto) {
         var authenticationToken = new UsernamePasswordAuthenticationToken(authDto.email(), authDto.password());
         var authentication = manager.authenticate(authenticationToken);
         var user = (User) authentication.getPrincipal();
+        TokenDto tokenDto = tokenService.getToken(user);
 
-        return ResponseEntity.ok(tokenService.getToken(user));
+        return ResponseEntity.ok(tokenDto);
     }
 }

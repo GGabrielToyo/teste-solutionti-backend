@@ -6,6 +6,8 @@ import com.teste.solution.user.domain.dtos.UserDto;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,6 +22,11 @@ public class UserController {
         UserDto userDto = userService.update(updateUserDto);
 
         return ResponseEntity.ok(userDto);
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<UserDto> getUserByJWT(@AuthenticationPrincipal UserDetails userDetails){
+        return ResponseEntity.ok(userService.getUserByEmail(userDetails.getUsername()));
     }
 
 }

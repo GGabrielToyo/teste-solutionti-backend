@@ -64,7 +64,11 @@ public class User implements UserDetails {
 
     public void update(UpdateUserDto updateUserDto) {
         this.name = (updateUserDto.name() != null && !updateUserDto.name().isEmpty()) ? updateUserDto.name() : this.name;
+        this.email = (updateUserDto.email() != null && !updateUserDto.email().isEmpty()) ? updateUserDto.email() : this.email;
         this.cpf = (updateUserDto.cpf() != null && !updateUserDto.cpf().isEmpty()) ? updateUserDto.cpf() : this.cpf;
+        if (updateUserDto.password() != null && !updateUserDto.password().isEmpty()) {
+            this.password = encryptPassword(updateUserDto.password());
+        }
         this.updatedAt = LocalDateTime.now();
     }
 
@@ -84,7 +88,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.name;
+        return this.email;
     }
 
     @Override

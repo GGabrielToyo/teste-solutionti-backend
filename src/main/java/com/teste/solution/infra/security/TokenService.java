@@ -5,6 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.teste.solution.user.domain.User;
+import com.teste.solution.user.domain.dtos.TokenDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +24,8 @@ public class TokenService {
 
     private static final String ISSUER = "Solution TI - Teste Processo Seletivo API Security Token Service";
 
-    public String getToken(User user){
-        return generateToken(user, expirationToken);
+    public TokenDto getToken(User user){
+        return new TokenDto(generateToken(user, expirationToken));
     }
 
     private String generateToken(User user, Integer expiration){

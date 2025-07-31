@@ -1,6 +1,5 @@
 package com.teste.solution.infra.security;
 
-import com.teste.solution.user.domain.User;
 import com.teste.solution.user.domain.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -30,6 +29,7 @@ public class SecurityFilter extends OncePerRequestFilter {
         if(tokenJWT != null){
             var subject = tokenService.getSubject(tokenJWT);
             var user = userRepository.findByEmail(subject);
+
 
             var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);

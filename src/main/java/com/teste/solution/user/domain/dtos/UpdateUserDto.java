@@ -9,6 +9,9 @@ public record UpdateUserDto(
         @NotNull(message = "ID is required")
         UUID id,
         String name,
-        String cpf
+        String email,
+        String cpf,
+        String password,
+        String passwordConfirmation
 ) {
 }
